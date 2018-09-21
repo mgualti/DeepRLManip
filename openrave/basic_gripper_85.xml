@@ -1,0 +1,62 @@
+<KinBody name="basic_gripper_85">
+  
+  <!-- back of hand -->
+  <Body name="gripper_base" type="dynamic">
+    <Geom type="box" modifiable="false">
+      <Extents>0.005 0.0525 0.005</Extents>
+      <Translation>0.000 0.000 -0.0425</Translation>
+      <diffuseColor>0.40 0.20 0.10</diffuseColor>
+    </Geom>
+    <!-- <Geom type="box" modifiable="false">
+      <Extents>0.005 0.005 0.0375</Extents>
+      <Translation>0.000 0.000 -0.075</Translation>
+      <diffuseColor>0.40 0.20 0.10</diffuseColor>
+    </Geom> -->
+    <mass type="custom">
+      <total>0.25</total>
+      <com>0 0 0</com>
+    </mass>
+  </Body>
+  
+  <!-- left finger link -->
+  <Body name="L_finger" type="dynamic">
+    <Geom type="box" modifiable="false">
+      <Extents>0.005 0.005 0.0375</Extents>
+      <Translation>0.000 0.000 0.000</Translation>
+      <diffuseColor>0.40 0.20 0.10</diffuseColor>
+    </Geom>
+    <mass type="custom">
+      <total>0.25</total>
+      <com>0 0 0</com>
+    </mass>
+  </Body>
+
+  <Body name="R_finger" type="dynamic">
+    <Geom type="box" modifiable="false">
+      <Extents>0.005 0.005 0.0375</Extents>
+      <Translation>0.000 0.000 0.000</Translation>
+      <diffuseColor>0.40 0.20 0.10</diffuseColor>
+    </Geom>
+    <mass type="custom">
+      <total>0.25</total>
+      <com>0 0 0</com>
+    </mass>
+  </Body>
+
+  <Joint name="jfinger_L" type="slider">
+    <offsetfrom>gripper_base</offsetfrom>
+    <body>gripper_base</body>
+    <body>L_finger</body>
+    <axis>0 -1 0</axis>
+    <limits>0 0.0475</limits>
+    <maxvel>0.02</maxvel>
+  </Joint>
+
+  <Joint name="jfinger_R" type="slider" enable="false" mimic_pos="-jfinger_L" mimic_vel="|jfinger_L -1" mimic_accel="|jfinger_L -1">
+    <offsetfrom>gripper_base</offsetfrom>
+    <body>gripper_base</body>
+    <body>R_finger</body>
+    <axis>0 -1 0</axis>
+    <limits>-0.0475 0</limits>
+  </Joint>
+</KinBody>
